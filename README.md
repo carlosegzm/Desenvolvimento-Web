@@ -1,135 +1,105 @@
-# LojaFácil — Sistema de Pedidos para Loja de Roupas
+# Filmix — Gerenciador de Filmes e Séries 🎬
 
 ## 1) Problema
-Clientes de pequenas lojas de roupas têm dificuldade em saber quais produtos estão disponíveis no estoque.  
-Isso causa frustração, perda de tempo e pedidos cancelados.  
-O administrador também sofre com a falta de organização do estoque e com pedidos que se perdem.  
-No início, o foco será clientes que desejam comprar roupas online e o administrador da loja, com o objetivo de organizar o catálogo e simplificar o processo de pedidos.
+Muitas pessoas assistem filmes e séries, mas acabam esquecendo quais já viram, quais ainda querem assistir e qual nota dariam para cada obra.  
+Isso gera desorganização, repetições indesejadas e dificuldade em recomendar conteúdos para amigos.  
+O foco inicial é no **usuário individual**, com o objetivo de permitir que ele registre, organize e atribua notas (0 a 10) às produções assistidas.
 
-## 2) Atores e Decisores
-Usuários principais:  
-- Cliente (faz pedidos e acompanha status)  
-- Administrador (cadastra roupas, controla estoque, gerencia pedidos)  
+## 2) Atores e Decisores (quem usa / quem decide)
+**Usuários principais:** Pessoas que desejam organizar seus filmes e séries assistidos.  
+**Decisores/Apoiadores:** Professor da disciplina (avaliador do projeto).
 
-Decisores/Apoiadores:  
-- Dono da loja de roupas  
+## 3) Casos de uso (de forma simples)
+Todos: Logar/deslogar do sistema; Manter dados cadastrais.  
+Usuário:  
+- Manter (inserir, mostrar, editar, remover) filmes/séries.  
+- Marcar filmes/séries como vistos ou não vistos.  
+- Atribuir nota de 0 a 10 para cada filme/série.  
+- Filtrar lista por status (vistos / não vistos).
 
-## 3) Casos de uso
-Todos: logar/deslogar; manter dados cadastrais  
+## 4) Limites e suposições
+**Limites:** prazo final da disciplina; rodar no navegador; sem serviços pagos.  
+**Suposições:** acesso à internet, navegador atualizado, GitHub para deploy, tempo do professor para avaliação.  
+**Plano B:** se não houver internet → rodar local com banco H2 no Spring Boot; se não houver tempo do professor → testar com colegas.
 
-Cliente:  
-- Visualizar catálogo de roupas disponíveis  
-- Inserir novo pedido  
-- Listar seus pedidos e ver status (pendente, confirmado, entregue)  
+## 5) Hipóteses + validação
+**H-Valor:** Se o usuário puder registrar e avaliar seus filmes, então terá mais controle sobre seu histórico de entretenimento, melhorando sua organização.  
+**Validação (valor):** teste com 5 usuários; sucesso se ≥4 conseguirem cadastrar, marcar como visto e avaliar sem ajuda.  
 
-Administrador:  
-- Manter (inserir, editar, remover, listar) produtos/estoque  
-- Listar todos os pedidos  
-- Atualizar status do pedido (pendente → confirmado → entregue)  
-
-## 4) Limites e Suposições
-Limites: entrega final até 2025-11-30; rodar no navegador; uso de Spring Boot + Angular; sem serviços pagos.  
-Suposições: internet no laboratório; GitHub acessível; banco de dados configurado (MySQL ou H2); tempo de teste em sala.  
-Plano B: sem internet → rodar local com Angular + Spring Boot e banco H2 embutido; sem tempo do professor → testar com 3 colegas.  
-
-## 5) Hipóteses e Validação
-**H-Valor:** Se o cliente visualizar roupas disponíveis em estoque, então terá mais confiança e concluirá pedidos sem precisar perguntar por WhatsApp.  
-Validação: teste com 5 clientes; sucesso se ≥4 conseguirem cadastrar e acompanhar pedidos sem ajuda.  
-
-**H-Viabilidade:** Com Spring Boot + Angular, listar roupas disponíveis responde em até 1s.  
-Validação: medir no protótipo com 30 requisições; meta: pelo menos 27 em 1s ou menos.  
+**H-Viabilidade:** Com Angular + Spring Boot + SQLite/Postgres, cadastrar e listar filmes responde em até 1 segundo.  
+**Validação (viabilidade):** medir no protótipo com 30 ações; meta: pelo menos 27 de 30 ações em ≤1s.
 
 ## 6) Fluxo principal e primeira fatia
-**Fluxo principal:**  
-1) Cliente faz login  
-2) Escolhe roupas no catálogo  
-3) Cria pedido  
-4) Sistema salva e vincula ao estoque  
-5) Admin atualiza status  
-6) Cliente acompanha o pedido  
+**Fluxo principal (curto):**  
+1) Usuário faz login  
+2) Adiciona filme/série  
+3) Sistema salva no banco (Spring Boot + DB)  
+4) Angular exibe o filme na lista com status e nota  
 
-**Primeira fatia vertical:**  
-Inclui:  
-- Uma tela (catálogo de produtos)  
-- Uma ação principal (cadastrar roupa)  
-- Salvar (nome, tamanho, quantidade em estoque)  
-- Mostrar (lista de roupas cadastradas)  
+**Primeira fatia vertical (escopo mínimo):**  
+Inclui: login simples, cadastrar filme, listar filmes em ordem, marcar como visto.  
+**Critérios de aceite:**  
+- Criar filme → aparece na lista com status e nota.  
+- Marcar como visto → muda o status para ✔ Visto.
 
-Critérios de aceite:  
-- Criar produto → aparece na lista com nome e estoque  
-- Atualizar estoque → lista reflete a mudança  
+## 7) Esboços de algumas telas (wireframes)
+### Tela de Login
+![Wireframe - Login](Wireframes/1.png)
 
-## 7) Esboços de telas
-- Tela de Login  
-- Tela do Cliente (visualizar catálogo, fazer pedido, ver status)  
-- Tela do Administrador (gerenciar produtos e estoque, visualizar pedidos)  
+### Tela de Cadastro
+![Wireframe - Cadastro](Wireframes/2.png)
+
+### Tela de Lista de Filmes
+![Wireframe - Lista de Filmes](Wireframes/3.png)
+
+### Tela de Adicionar/Editar Filme
+![Wireframe - Adicionar Filme](Wireframes/4.png)
 
 ## 8) Tecnologias
-
 ### 8.1 Navegador
-**Navegador:** Angular + Bootstrap  
-**Hospedagem:** GitHub Pages  
+**Navegador:** Chrome/Firefox/Edge (compatível com Angular)  
+**Hospedagem Front-end:** GitHub Pages ou Vercel  
 
-### 8.2 Front-end
-**Front-end:** Angular  
-**Hospedagem:** GitHub Pages / Vercel  
+### 8.2 Front-end (Angular)
+**Framework:** Angular  
+**Estilização:** Angular Material / Bootstrap  
+**Comunicação com API:** HTTPClient (REST API)  
+**Hospedagem:** Vercel / Netlify  
 
-### 8.3 Back-end
-**Back-end:** Java + Spring Boot  
-**Banco de dados:** MySQL (produção) / H2 (teste)  
-**Deploy do back-end:** Render / Railway  
+### 8.3 Back-end (Spring Boot)
+**Framework:** Spring Boot (Java 17+)  
+**Banco de dados:** PostgreSQL (produção) / H2 (desenvolvimento)  
+**Segurança:** Spring Security + JWT (autenticação), proteção CSRF habilitada  
+**Deploy:** Railway / Render  
 
-## 9) Plano de Dados
-
+## 9) Plano de Dados (Dia 0) — somente itens 1–3
 ### 9.1 Entidades
-- **Usuário** — pessoa que acessa o sistema (cliente ou admin)  
-- **Produto** — roupa cadastrada no catálogo  
-- **Pedido** — compra realizada pelo cliente  
-- **ItemPedido** — ligação entre pedido e produtos (com quantidade)  
+- Usuario — pessoa que usa o sistema.  
+- Filme — produção cadastrada pelo usuário.  
 
 ### 9.2 Campos por entidade
+#### Usuario
+| Campo           | Tipo      | Obrigatório | Exemplo            |
+|-----------------|-----------|-------------|--------------------|
+| id              | número    | sim         | 1                  |
+| nome            | texto     | sim         | "Ana Souza"        |
+| email           | texto     | sim (único) | "ana@exemplo.com"  |
+| senha_hash      | texto     | sim         | "$2a$10$..."       |
+| dataCriacao     | data/hora | sim         | 2025-08-20 14:30   |
+| dataAtualizacao | data/hora | sim         | 2025-08-20 15:10   |
 
-#### Usuário
-| Campo           | Tipo                        | Obrigatório | Exemplo           |
-|-----------------|-----------------------------|-------------|-------------------|
-| id              | número                      | sim         | 1                 |
-| nome            | texto                       | sim         | "Ana Souza"       |
-| email           | texto                       | sim (único) | "ana@exemplo.com" |
-| senha_hash      | texto                       | sim         | "$2a$10$..."      |
-| papel           | número (0=cliente, 1=admin) | sim         | 0                 |
-| dataCriacao     | data/hora                   | sim         | 2025-08-21 14:30  |
-| dataAtualizacao | data/hora                   | sim         | 2025-08-21 15:10  |
+#### Filme
+| Campo           | Tipo      | Obrigatório | Exemplo                 |
+|-----------------|-----------|-------------|-------------------------|
+| id              | número    | sim         | 2                       |
+| usuario_id      | número fk | sim         | 1                       |
+| nome            | texto     | sim         | "Matrix"                |
+| genero          | texto     | sim         | "Ficção"                |
+| status          | booleano  | sim         | true (= visto)          |
+| nota            | número    | sim         | 9                       |
+| dataCriacao     | data/hora | sim         | 2025-08-20 14:35        |
+| dataAtualizacao | data/hora | sim         | 2025-08-20 14:50        |
 
-#### Produto
-| Campo             | Tipo      | Obrigatório | Exemplo           |
-|-------------------|-----------|-------------|-------------------|
-| id                | número    | sim         | 1                 |
-| nome              | texto     | sim         | "Camiseta Básica" |
-| tamanho           | char      | sim         | "M"               |
-| preco             | número    | sim         | 49.90             |
-| quantidadeEstoque | número    | sim         | 15                |
-| dataCriacao       | data/hora | sim         | 2025-08-21 14:35  |
-| dataAtualizacao   | data/hora | sim         | 2025-08-21 14:50  |
-
-#### Pedido
-| Campo           | Tipo       | Obrigatório | Exemplo |
-|-----------------|------------|-------------|---------|
-| id              | número     | sim         | 10      |
-| usuario_id      | número (fk)| sim         | 1       |
-| dataCriacao     | data/hora  | sim         | 2025-08-21 14:40 |
-| status          | char       | sim         | 'p' (pendente), 'c' (confirmado), 'e' (entregue) |
-| dataAtualizacao | data/hora  | sim         | 2025-08-21 14:55 |
-
-#### ItemPedido
-| Campo      | Tipo       | Obrigatório | Exemplo |
-|------------|------------|-------------|---------|
-| id         | número     | sim         | 100     |
-| pedido_id  | número (fk)| sim         | 10      |
-| produto_id | número (fk)| sim         | 1       |
-| quantidade | número     | sim         | 2       |
-
-### 9.3 Relações
-- Um Usuário tem muitos Pedidos (1→N).  
-- Um Pedido pertence a um Usuário (N→1).  
-- Um Pedido tem muitos ItensPedido (1→N).  
-- Um Produto pode estar em muitos ItensPedido (N→N via ItemPedido).
+### 9.3 Relações entre entidades
+- Um **Usuario** tem muitos **Filmes** (1→N).  
+- Um **Filme** pertence a um **Usuario** (N→1).  
