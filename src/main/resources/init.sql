@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS generos (
 CREATE TABLE IF NOT EXISTS filmes (
     id             SERIAL PRIMARY KEY,
     titulo         VARCHAR(255) NOT NULL UNIQUE,
-    sinopse        VARCHAR(1000),
+    sinopse        VARCHAR(255),
     diretor        VARCHAR(100),
     ano_lancamento DATE,
     foto_filme     VARCHAR(255)
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS avaliacoes (
     usuario_id     INTEGER NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
     filme_id       INTEGER NOT NULL REFERENCES filmes(id) ON DELETE CASCADE,
     nota           NUMERIC(3,1) NOT NULL CHECK (nota >= 0.0 AND nota <= 10.0),
-    comentario     VARCHAR(2000),
+    comentario     VARCHAR(255),
     data_avaliacao TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
