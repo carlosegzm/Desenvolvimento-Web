@@ -1,35 +1,41 @@
 package br.com.filmix.api.mapper;
 
-import br.com.filmix.api.dto.AvaliacaoDTO;
+import br.com.filmix.api.dto.AvaliacaoRequestDTO;
+import br.com.filmix.api.dto.AvaliacaoResponseDTO;
+import br.com.filmix.api.dto.FilmeSimplificadoDTO;
+import br.com.filmix.api.dto.UsuarioSimplificadoDTO;
 import br.com.filmix.api.model.Avaliacao;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AvaliacaoMapper {
 
-    public Avaliacao map(AvaliacaoDTO avaliacaoDTO) {
+    public Avaliacao toEntity(AvaliacaoRequestDTO dto) {
         Avaliacao avaliacao = new Avaliacao();
-        avaliacao.setId(avaliacaoDTO.getId());
-        avaliacao.setDataAvaliacao(avaliacaoDTO.getDataAvaliacao());
-        avaliacao.setNota(avaliacaoDTO.getNota());
-        avaliacao.setFilme(avaliacaoDTO.getFilme());
-        avaliacao.setUsuario(avaliacaoDTO.getUsuario());
-        avaliacao.setComentario(avaliacaoDTO.getComentario());
-
+        avaliacao.setNota(dto.nota());
+        avaliacao.setComentario(dto.comentario());
         return avaliacao;
     }
 
-    public AvaliacaoDTO map(Avaliacao avaliacao) {
-        AvaliacaoDTO avaliacaoDTO = new AvaliacaoDTO();
-        avaliacaoDTO.setId(avaliacao.getId());
-        avaliacaoDTO.setDataAvaliacao(avaliacao.getDataAvaliacao());
-        avaliacaoDTO.setNota(avaliacao.getNota());
-        avaliacaoDTO.setFilme(avaliacao.getFilme());
-        avaliacaoDTO.setUsuario(avaliacao.getUsuario());
-        avaliacaoDTO.setComentario(avaliacao.getComentario());
+    public AvaliacaoResponseDTO toResponseDTO(Avaliacao entity) {
+        UsuarioSimplificadoDTO usuarioDTO = new UsuarioSimplificadoDTO(
+                entity.getUsuario().getId(),
+                entity.getUsuario().getNome()
+        );
 
-        return avaliacaoDTO;
+        FilmeSimplificadoDTO filmeDTO = new FilmeSimplificadoDTO(
+                entity.getFilme().getId(),
+                entity.getFilme().getTitulo()
+        );
+
+        return new AvaliacaoResponseDTO(
+                entity.getId(),
+                entity.getNota(),
+                entity.getComentario(),
+                entity.getDataAvaliacao(),
+                usuarioDTO,
+                filmeDTO
+        );
     }
-
 
 }

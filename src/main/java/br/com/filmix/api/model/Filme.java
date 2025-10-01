@@ -2,12 +2,14 @@ package br.com.filmix.api.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
 @Data
+@EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "filmes")
 public class Filme {
@@ -42,10 +44,6 @@ public class Filme {
     )
     private Set<Genero> generos;
 
-    @ManyToMany(mappedBy = "listaUsuario")
-    private Set<Usuario> usuariosComEsteFilmeNaLista;
-
-
-
-
+    @OneToMany(mappedBy = "filme")
+    private Set<UsuarioFilme> usuariosNaLista;
 }

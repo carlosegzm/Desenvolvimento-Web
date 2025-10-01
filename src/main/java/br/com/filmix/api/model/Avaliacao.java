@@ -16,10 +16,8 @@ public class Avaliacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Min(value = 0, message = "A nota não pode ser menor que 0")
-    @Max(value = 10, message = "A nota não pode ser maior que 10")
     @Column(name = "nota",nullable = false)
-    private float nota;
+    private Float nota;
 
     @Column(name = "comentario", length = 255)
     private String comentario;

@@ -1,40 +1,42 @@
 package br.com.filmix.api.mapper;
 
-import br.com.filmix.api.dto.FilmeDTO;
+import br.com.filmix.api.dto.FilmeRequestDTO;
+import br.com.filmix.api.dto.FilmeResponseDTO;
 import br.com.filmix.api.model.Filme;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
+@AllArgsConstructor
 public class FilmeMapper {
 
-    public Filme map(FilmeDTO filmeDTO) {
-        Filme filme = new Filme();
-        filme.setId(filmeDTO.getId());
-        filme.setFotoFilme(filmeDTO.getFotoFilme());
-        filme.setGeneros(filmeDTO.getGeneros());
-        filme.setDiretor(filmeDTO.getDiretor());
-        filme.setAvaliacoes(filmeDTO.getAvaliacoes());
-        filme.setSinopse(filmeDTO.getSinopse());
-        filme.setTitulo(filmeDTO.getTitulo());
-        filme.setAnoLancamento(filmeDTO.getAnoLancamento());
-        filme.setUsuariosComEsteFilmeNaLista(filmeDTO.getUsuariosComEsteFilmeNaLista());
+    private final GeneroMapper generoMapper;
 
+    public Filme toEntity(FilmeRequestDTO dto) {
+        Filme filme = new Filme();
+        filme.setTitulo(dto.titulo());
+        filme.setSinopse(dto.sinopse());
+        filme.setDiretor(dto.diretor());
+        filme.setAnoLancamento(dto.anoLancamento());
+        filme.setFotoFilme(dto.fotoFilme());
         return filme;
     }
 
-    public FilmeDTO map(Filme filme) {
-        FilmeDTO filmeDTO = new FilmeDTO();
-        filmeDTO.setId(filme.getId());
-        filmeDTO.setFotoFilme(filme.getFotoFilme());
-        filmeDTO.setGeneros(filme.getGeneros());
-        filmeDTO.setDiretor(filme.getDiretor());
-        filmeDTO.setAvaliacoes(filme.getAvaliacoes());
-        filmeDTO.setSinopse(filme.getSinopse());
-        filmeDTO.setTitulo(filme.getTitulo());
-        filmeDTO.setAnoLancamento(filme.getAnoLancamento());
-        filmeDTO.setUsuariosComEsteFilmeNaLista(filme.getUsuariosComEsteFilmeNaLista());
-
-        return filmeDTO;
+    public FilmeResponseDTO toResponseDTO(Filme entity) {
+        return new FilmeResponseDTO(
+                entity.getId(),
+                entity.getTitulo(),
+                entity.getSinopse(),
+                entity.getDiretor(),
+                entity.getAnoLancamento(),
+                entity.getFotoFilme(),
+                entity.getGeneros().stream()
+                        .map(generoMapper::toResponseDTO)
+                        .collect(Collectors.toSet())
+        );
     }
+
 
 }

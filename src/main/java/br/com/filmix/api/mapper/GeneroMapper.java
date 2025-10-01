@@ -1,28 +1,21 @@
 package br.com.filmix.api.mapper;
 
-import br.com.filmix.api.dto.GeneroDTO;
+import br.com.filmix.api.dto.GeneroRequestDTO;
+import br.com.filmix.api.dto.GeneroResponseDTO;
 import br.com.filmix.api.model.Genero;
 import org.springframework.stereotype.Component;
 
 @Component
 public class GeneroMapper {
 
-    public Genero map(GeneroDTO generoDTO) {
+    public Genero toEntity(GeneroRequestDTO dto) {
         Genero genero = new Genero();
-        genero.setFilmes(generoDTO.getFilmes());
-        genero.setId(generoDTO.getId());
-        genero.setNome(generoDTO.getNome());
-
+        genero.setNome(dto.nome());
         return genero;
     }
 
-    public GeneroDTO map(Genero genero) {
-        GeneroDTO generoDTO = new GeneroDTO();
-        generoDTO.setFilmes(genero.getFilmes());
-        generoDTO.setId(genero.getId());
-        generoDTO.setNome(genero.getNome());
-
-        return generoDTO;
+    public GeneroResponseDTO toResponseDTO(Genero entity) {
+        return new GeneroResponseDTO(entity.getId(), entity.getNome());
     }
 
 }
