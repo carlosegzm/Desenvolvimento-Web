@@ -7,7 +7,7 @@ O foco inicial é no **usuário individual**, com o objetivo de permitir que ele
 
 ## 2) Atores e Decisores (quem usa / quem decide)
 **Usuários principais:** Pessoas que desejam organizar seus filmes e séries assistidos.  
-**Decisores/Apoiadores:** Professor da disciplina (avaliador do projeto).
+**Decisores/Apoiadores:** Administradores; equipe de desenvolvimento
 
 ## 3) Casos de uso (de forma simples)
 Todos: Logar/deslogar do sistema; Manter dados cadastrais.  
@@ -66,11 +66,11 @@ Inclui: login simples, cadastrar filme, listar filmes em ordem, marcar como vist
 **Comunicação com API:** HTTPClient (REST API)  
 **Hospedagem:** Vercel / Netlify
 
-### 8.3 Back-end (Spring Boot)
+### 8.3 Back-end (API com Spring Boot)
 **Framework:** Spring Boot (Java 17+)  
-**Banco de dados:** PostgreSQL (produção) / H2 (desenvolvimento)  
-**Segurança:** Spring Security + JWT (autenticação), proteção CSRF habilitada  
-**Deploy:** Railway / Render
+**Banco de dados:** PostgreSQL (executado via Docker)  
+**Segurança:** Spring Security + JWT (autenticação)
+**Gerenciador de Dependências:** Maven
 
 ## 9) Plano de Dados (Dia 0) — somente itens 1–3
 ### 9.1 Entidades
@@ -144,6 +144,9 @@ Inclui: login simples, cadastrar filme, listar filmes em ordem, marcar como vist
 -   Um **Usuario** pode ter muitos **Filmes** em sua lista pessoal (N↔N, resolvido pela tabela `usuario_lista_filmes`).
 
 ### 9.4 Modelagem no PostgreSQL
+
+*A aplicação está configurada com `spring.jpa.hibernate.ddl-auto=update`. O script DDL abaixo serve como documentação da estrutura que é gerada automaticamente pela aplicação ao ser iniciada.*
+
 
 ```sql
 -- -> DDL (Data Definition Language)
