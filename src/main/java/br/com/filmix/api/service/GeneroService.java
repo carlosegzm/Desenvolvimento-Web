@@ -1,7 +1,7 @@
 package br.com.filmix.api.service;
 
-import br.com.filmix.api.dto.GeneroRequestDTO;
-import br.com.filmix.api.dto.GeneroResponseDTO;
+import br.com.filmix.api.dto.genero.GeneroRequestDTO;
+import br.com.filmix.api.dto.genero.GeneroResponseDTO;
 import br.com.filmix.api.exception.RecursoNaoEncontradoException;
 import br.com.filmix.api.mapper.GeneroMapper;
 import br.com.filmix.api.model.Genero;
@@ -48,6 +48,8 @@ public class GeneroService {
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Gênero com ID " + id + " não encontrado."));
 
         genero.setNome(dto.nome());
+        genero.setCor(dto.cor());
+        genero.setIcone(dto.icone());
         generoRepository.save(genero);
 
         return generoMapper.toResponseDTO(genero);

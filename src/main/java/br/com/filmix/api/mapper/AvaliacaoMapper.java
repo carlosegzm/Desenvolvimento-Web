@@ -1,9 +1,9 @@
 package br.com.filmix.api.mapper;
 
-import br.com.filmix.api.dto.AvaliacaoRequestDTO;
-import br.com.filmix.api.dto.AvaliacaoResponseDTO;
-import br.com.filmix.api.dto.FilmeSimplificadoDTO;
-import br.com.filmix.api.dto.UsuarioSimplificadoDTO;
+import br.com.filmix.api.dto.avaliacao.AvaliacaoRequestDTO;
+import br.com.filmix.api.dto.avaliacao.AvaliacaoResponseDTO;
+import br.com.filmix.api.dto.filme.FilmeSimplificadoDTO;
+import br.com.filmix.api.dto.usuario.UsuarioSimplificadoDTO;
 import br.com.filmix.api.model.Avaliacao;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +25,8 @@ public class AvaliacaoMapper {
 
         FilmeSimplificadoDTO filmeDTO = new FilmeSimplificadoDTO(
                 entity.getFilme().getId(),
-                entity.getFilme().getTitulo()
+                entity.getFilme().getTitulo(),
+                entity.getFilme().getFotoFilme()
         );
 
         return new AvaliacaoResponseDTO(

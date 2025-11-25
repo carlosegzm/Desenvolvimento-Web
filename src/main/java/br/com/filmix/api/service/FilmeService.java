@@ -1,7 +1,7 @@
 package br.com.filmix.api.service;
 
-import br.com.filmix.api.dto.FilmeRequestDTO;
-import br.com.filmix.api.dto.FilmeResponseDTO;
+import br.com.filmix.api.dto.filme.FilmeRequestDTO;
+import br.com.filmix.api.dto.filme.FilmeResponseDTO;
 import br.com.filmix.api.exception.RecursoNaoEncontradoException;
 import br.com.filmix.api.mapper.FilmeMapper;
 import br.com.filmix.api.model.Filme;

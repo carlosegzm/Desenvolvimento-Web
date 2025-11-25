@@ -1,4 +1,7 @@
-package br.com.filmix.api.dto;
+package br.com.filmix.api.dto.avaliacao;
+
+import br.com.filmix.api.dto.filme.FilmeSimplificadoDTO;
+import br.com.filmix.api.dto.usuario.UsuarioSimplificadoDTO;
 
 import java.time.LocalDateTime;
 
@@ -7,7 +10,7 @@ public record AvaliacaoResponseDTO(
         Float nota,
         String comentario,
         LocalDateTime dataAvaliacao,
-        UsuarioSimplificadoDTO usuario,
+        UsuarioSimplificadoDTO nomeUsuario,
         FilmeSimplificadoDTO filme
 ) {
 }

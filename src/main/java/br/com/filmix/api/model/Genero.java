@@ -1,6 +1,5 @@
 package br.com.filmix.api.model;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,6 +16,12 @@ public class Genero {
 
     @Column(name = "nome", length = 100, unique = true, nullable = false)
     private String nome;
+
+    @Column
+    private String cor;
+
+    @Column
+    private String icone;
 
     @ManyToMany(mappedBy = "generos")
     private Set<Filme> filmes;

@@ -1,4 +1,6 @@
-package br.com.filmix.api.dto;
+package br.com.filmix.api.dto.filme;
+
+import br.com.filmix.api.dto.genero.GeneroResponseDTO;
 
 import java.time.LocalDate;
 import java.util.Set;

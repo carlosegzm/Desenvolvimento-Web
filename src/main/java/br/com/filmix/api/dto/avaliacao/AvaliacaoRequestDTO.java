@@ -1,4 +1,4 @@
-package br.com.filmix.api.dto;
+package br.com.filmix.api.dto.avaliacao;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

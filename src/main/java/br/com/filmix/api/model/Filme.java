@@ -21,7 +21,7 @@ public class Filme {
     @Column(name = "titulo",length = 255, unique = true, nullable = false)
     private String titulo;
 
-    @Column(name = "sinopse", length = 255)
+    @Column(name = "sinopse", length = 2000)
     private String sinopse;
 
     @Column(name = "diretor", length = 100)

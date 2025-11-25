@@ -1,4 +1,4 @@
-package br.com.filmix.api.dto;
+package br.com.filmix.api.dto.filme;
 
 import jakarta.validation.constraints.NotNull;
 
