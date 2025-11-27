@@ -38,6 +38,8 @@ public class SecurityConfiguration {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
 
                 .authorizeHttpRequests(req -> {
+                    req.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
+                    req.requestMatchers("/error").permitAll();
                     req.requestMatchers("/api/auth/**").permitAll();
                     req.requestMatchers("/api/usuarios/registrar").permitAll();
                     req.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll();
