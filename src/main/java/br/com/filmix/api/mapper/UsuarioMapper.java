@@ -2,6 +2,7 @@ package br.com.filmix.api.mapper;
 
 import br.com.filmix.api.dto.usuario.UsuarioRequestDTO;
 import br.com.filmix.api.dto.usuario.UsuarioResponseDTO;
+import br.com.filmix.api.model.Role;
 import br.com.filmix.api.model.Usuario;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,13 @@ public class UsuarioMapper {
         usuario.setNome(dto.nome());
         usuario.setEmail(dto.email());
         usuario.setFotoPerfil(dto.fotoPerfil());
-        usuario.setRole(dto.role());
+
+        if (dto.role() == null) {
+            usuario.setRole(Role.USER);
+        } else {
+            usuario.setRole(dto.role());
+        }
+
         return usuario;
     }
 
