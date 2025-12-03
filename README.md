@@ -73,10 +73,10 @@ Inclui: login simples, cadastrar filme, listar filmes, marcar como visto.
   ![Sequence Criar Filme](Wireframes/CRUDCriarFilme.png)
 
 ### 7.4 Esboços de Telas (Wireframes)
-* **Tela de Login:** ![Wireframe - Login](/wireframes/1.png)
-* **Tela de Dashboard:** ![Wireframe - Cadastro](/wireframes/2.png)
-* **Tela de Lista de Filmes:** ![Wireframe - Lista de Filmes](/wireframes/3.png)
-* **Tela de Gêneros:** ![Wireframe - Adicionar Filme](/wireframes/4.png)
+* **Tela de Login:** ![Wireframe - Login](Wireframes/1.png)
+* **Tela de Dashboard:** ![Wireframe - Cadastro](Wireframes/2.png)
+* **Tela de Lista de Filmes:** ![Wireframe - Lista de Filmes](Wireframes/3.png)
+* **Tela de Gêneros:** ![Wireframe - Adicionar Filme](Wireframes/4.png)
 
 ## 8) Tecnologias
 ### 8.1 Navegador
