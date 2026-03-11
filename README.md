@@ -1,6 +1,6 @@
 # Filmix — Gerenciador de Filmes e Séries 🎬
 
-![Status](https://img.shields.io/badge/STATUS-EM_PRODUÇÃO-green) ![Java](https://img.shields.io/badge/Java-17-orange) ![Spring](https://img.shields.io/badge/Spring-Boot_3-green) ![React](https://img.shields.io/badge/React-JS-blue)
+![Status](https://img.shields.io/badge/STATUS-FINALIZADO-red) ![Java](https://img.shields.io/badge/Java-17-orange) ![Spring](https://img.shields.io/badge/Spring-Boot_3-green) ![React](https://img.shields.io/badge/React-JS-blue)
 
 ## 🔗 Links do Projeto (Deploy)
 A aplicação está rodando publicamente na nuvem (Render):
